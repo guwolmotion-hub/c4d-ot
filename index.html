@@ -79,18 +79,38 @@ body:has(.btn:hover) #cursor-follower,
 body:has(a:hover) #cursor-follower{width:60px;height:60px;opacity:.3;}
 
 /* ─────────────────────────────────────
-   RIPPLE
+   RIPPLE & CLICK FX
 ───────────────────────────────────── */
 .ripple-el{position:relative;overflow:hidden;}
 .ripple-wave{
   position:absolute;
   border-radius:50%;
-  background:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.3);
   transform:scale(0);
-  animation:rippleAnim .6s linear;
+  animation:rippleAnim .7s cubic-bezier(.25,.46,.45,.94) forwards;
   pointer-events:none;
+  z-index:10;
 }
-@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
+.ripple-dark .ripple-wave{background:rgba(0,0,0,0.08);}
+@keyframes rippleAnim{0%{transform:scale(0);opacity:.7;}100%{transform:scale(4.5);opacity:0;}}
+
+/* 버튼 shimmer sweep */
+.shimmer-btn{
+  position:relative;overflow:hidden;
+}
+.shimmer-btn::after{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transform:skewX(-20deg);
+  transition:none;
+}
+.shimmer-btn:hover::after{
+  animation:shimmerSweep .6s ease forwards;
+}
+@keyframes shimmerSweep{to{left:160%;}}
 
 /* ─────────────────────────────────────
    NAV
@@ -573,6 +593,155 @@ nav.stuck{
 .ai-card-text strong{color:var(--ink);}
 
 /* ─────────────────────────────────────
+   WHY LEARN C4D (상세 이유)
+───────────────────────────────────── */
+.why-learn-s{background:var(--ink);color:#fff;}
+.why-learn-s .s-h{color:#fff;}
+.wl-top{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;
+  margin-bottom:80px;
+}
+.wl-big-stat{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.wl-stat{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);
+  padding:28px 24px;
+  text-align:center;
+  position:relative;overflow:hidden;
+  transition:all .35s;cursor:default;
+}
+.wl-stat::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+}
+.wl-stat:hover{
+  transform:translateY(-6px);
+  background:rgba(232,93,0,.07);
+  border-color:rgba(232,93,0,.2);
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+.wl-stat-n{
+  font-family:var(--font-display);
+  font-size:2.8rem;color:var(--orange);
+  line-height:1;margin-bottom:8px;
+}
+.wl-stat-l{font-size:.75rem;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.08em;}
+.wl-reasons{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:16px;
+}
+.wl-reason{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);
+  padding:28px 24px;
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+  cursor:default;
+  position:relative;overflow:hidden;
+}
+.wl-reason::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(232,93,0,.12),transparent 60%);
+  opacity:0;transition:opacity .35s;
+}
+.wl-reason:hover{
+  transform:translateY(-8px);
+  border-color:rgba(232,93,0,.25);
+  box-shadow:0 24px 50px rgba(0,0,0,.4);
+}
+.wl-reason:hover::after{opacity:1;}
+.wl-reason-num{
+  font-family:var(--font-display);
+  font-size:3.5rem;color:rgba(232,93,0,.12);
+  line-height:1;margin-bottom:8px;letter-spacing:.05em;
+}
+.wl-reason-title{
+  font-size:1rem;font-weight:800;color:#fff;
+  margin-bottom:10px;line-height:1.4;
+}
+.wl-reason-text{font-size:.83rem;line-height:1.8;color:rgba(255,255,255,.45);}
+.wl-reason-text strong{color:rgba(255,255,255,.85);}
+
+/* ─────────────────────────────────────
+   STUDIOS
+───────────────────────────────────── */
+.studios-s{background:var(--surface);}
+.studios-category{margin-bottom:56px;}
+.studios-cat-label{
+  display:flex;align-items:center;gap:12px;
+  font-size:.68rem;font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gray2);margin-bottom:20px;
+}
+.studios-cat-label::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.studios-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
+}
+.studio-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+  padding:20px 24px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  text-decoration:none;
+  color:var(--ink);
+  position:relative;overflow:hidden;
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+}
+.studio-btn::before{
+  content:'';
+  position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--orange),var(--gold));
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .3s;
+}
+.studio-btn:hover{
+  transform:translateX(6px);
+  border-color:rgba(232,93,0,.25);
+  box-shadow:0 8px 28px rgba(0,0,0,.1);
+}
+.studio-btn:hover::before{transform:scaleY(1);}
+.studio-btn-left{}
+.studio-btn-name{
+  font-size:.95rem;font-weight:800;color:var(--ink);
+  margin-bottom:3px;
+  transition:color .25s;
+}
+.studio-btn:hover .studio-btn-name{color:var(--orange);}
+.studio-btn-desc{font-size:.72rem;color:var(--gray1);}
+.studio-btn-arrow{
+  width:32px;height:32px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:var(--gray2);flex-shrink:0;
+  transition:all .3s;
+}
+.studio-btn:hover .studio-btn-arrow{
+  background:var(--orange);border-color:var(--orange);
+  color:#fff;transform:rotate(45deg);
+}
+@media(max-width:900px){
+  .wl-top{grid-template-columns:1fr;gap:40px;}
+  .wl-reasons{grid-template-columns:1fr;}
+  .studios-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .studios-grid{grid-template-columns:1fr;}
+  .wl-big-stat{grid-template-columns:1fr 1fr;}
+}
+/* ─────────────────────────────────────
    WHY C4D (PROBLEM Q&A)
 ───────────────────────────────────── */
 .why-s{background:var(--off-white);}
@@ -934,14 +1103,22 @@ nav.stuck{
   background:var(--ink);color:#fff;
   padding:18px 36px;border-radius:12px;
   font-size:.92rem;font-weight:700;letter-spacing:.04em;
-  transition:all .3s;
+  transition:all .4s cubic-bezier(.16,1,.3,1);
   position:relative;overflow:hidden;
+}
+.btn-cta::before{
+  content:'';
+  position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transition:none;
 }
 .btn-cta:hover{
   background:var(--orange);
-  transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(232,93,0,.35);
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 16px 40px rgba(232,93,0,.45),0 0 0 1px rgba(232,93,0,.3);
 }
+.btn-cta:hover::before{animation:shimmerSweep .5s ease forwards;}
+.btn-cta:active{transform:translateY(-1px) scale(.99);}
 .btn-cta-arrow{
   width:28px;height:28px;
   border-radius:50%;background:rgba(255,255,255,.15);
@@ -1063,10 +1240,10 @@ footer{
   <div class="nav-logo">CINEMA<em>4D</em></div>
   <ul class="nav-links">
     <li><a href="#instructor">강사 소개</a></li>
-    <li><a href="#ai">AI & 근본</a></li>
+    <li><a href="#why-learn">왜 C4D인가</a></li>
+    <li><a href="#studios">스튜디오</a></li>
     <li><a href="#curriculum">커리큘럼</a></li>
-    <li><a href="#chapters">학습 내용</a></li>
-    <li><a href="#results">작업물 보기</a></li>
+    <li><a href="#results">작업물</a></li>
   </ul>
   <div class="nav-pill"><span></span>1일차 OT</div>
 </nav>
@@ -1271,6 +1448,182 @@ footer{
           실무 기본기를 갖춘 디자이너는 AI 툴을 만나면 <strong>생산성이 수십 배</strong> 뛰어오릅니다.
           Cinema 4D의 기초가 곧 여러분의 AI 활용 능력입니다.
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHY LEARN C4D ═══════ -->
+<section class="s why-learn-s" id="why-learn">
+  <div class="s-inner">
+    <div class="s-tag rv" style="color:rgba(255,255,255,.35);">Why Cinema 4D</div>
+    <h2 class="s-h rv" style="color:#fff;margin-bottom:16px;">그래서, 왜 <span style="color:var(--orange);">C4D</span>를<br>배워야 하는가</h2>
+    <p class="s-p rv" style="color:rgba(255,255,255,.4);margin-bottom:64px;">
+      3D 툴은 많다. 그 중에서도 Cinema 4D를 선택해야 하는 이유는 명확합니다.
+    </p>
+
+    <div class="wl-top">
+      <div class="rv">
+        <div class="wl-big-stat">
+          <div class="wl-stat">
+            <div class="wl-stat-n">#1</div>
+            <div class="wl-stat-l">모션그래픽 업계<br>표준 소프트웨어</div>
+          </div>
+          <div class="wl-stat">
+            <div class="wl-stat-n">AE</div>
+            <div class="wl-stat-l">After Effects<br>완벽 연동</div>
+          </div>
+          <div class="wl-stat">
+            <div class="wl-stat-n">2D+</div>
+            <div class="wl-stat-l">기존 2D 스킬을<br>그대로 확장</div>
+          </div>
+          <div class="wl-stat">
+            <div class="wl-stat-n">취업</div>
+            <div class="wl-stat-l">국내외 스튜디오<br>필수 요구 스펙</div>
+          </div>
+        </div>
+      </div>
+      <div class="rv d1">
+        <p style="font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,.55);margin-bottom:20px;">
+          Cinema 4D는 단순한 3D 툴이 아닙니다. <strong style="color:#fff;">광고, 방송, 뮤직비디오, 브랜드 영상</strong>까지
+          모션 디자인이 필요한 모든 곳에서 C4D가 사용됩니다.
+        </p>
+        <p style="font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,.55);">
+          Maya나 Blender에 비해 <strong style="color:#fff;">직관적인 인터페이스</strong>와
+          <strong style="color:#fff;">MoGraph 시스템</strong>으로 더 빠르게 실무 수준에 도달할 수 있으며,
+          After Effects와의 완벽한 연동으로 2D 작업자가 3D로 확장하기 가장 좋은 경로입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="wl-reasons">
+      <div class="wl-reason rv ripple-el">
+        <div class="wl-reason-num">01</div>
+        <div class="wl-reason-title">업계 표준 · 실무 즉시 투입</div>
+        <div class="wl-reason-text">
+          국내외 모션 디자인 스튜디오의 <strong>80% 이상</strong>이 C4D를 사용합니다.
+          배운 즉시 실무에 적용 가능한 가장 실용적인 3D 툴입니다.
+        </div>
+      </div>
+      <div class="wl-reason rv d1 ripple-el">
+        <div class="wl-reason-num">02</div>
+        <div class="wl-reason-title">MoGraph — 3D의 핵심 경쟁력</div>
+        <div class="wl-reason-text">
+          클로너, 이펙터, 필드로 이루어진 MoGraph 시스템은 <strong>C4D에서만 가능한 독보적 기능</strong>.
+          복잡한 군집 애니메이션을 코딩 없이 직관적으로 만듭니다.
+        </div>
+      </div>
+      <div class="wl-reason rv d2 ripple-el">
+        <div class="wl-reason-num">03</div>
+        <div class="wl-reason-title">After Effects와 완벽 연동</div>
+        <div class="wl-reason-text">
+          Cineware를 통해 AE에서 C4D 씬을 직접 편집. <strong>2D 모션 + 3D 오브젝트</strong>를
+          하나의 파이프라인으로 제작하는 현업 워크플로우 그대로 배웁니다.
+        </div>
+      </div>
+      <div class="wl-reason rv ripple-el">
+        <div class="wl-reason-num">04</div>
+        <div class="wl-reason-title">옥테인 렌더러 — 사진 같은 품질</div>
+        <div class="wl-reason-text">
+          GPU 기반 Octane Render로 <strong>실사급 제품 렌더링, 광고 비주얼</strong>을 구현.
+          브랜드 영상, 제품 광고 분야로 취업 범위가 확장됩니다.
+        </div>
+      </div>
+      <div class="wl-reason rv d1 ripple-el">
+        <div class="wl-reason-num">05</div>
+        <div class="wl-reason-title">학습 곡선이 낮다</div>
+        <div class="wl-reason-text">
+          Maya, Houdini 대비 <strong>훨씬 빠르게 결과물을 만들 수 있는</strong> 직관적 UI.
+          처음 3D를 시작하는 사람에게 가장 추천되는 입문 경로입니다.
+        </div>
+      </div>
+      <div class="wl-reason rv d2 ripple-el">
+        <div class="wl-reason-num">06</div>
+        <div class="wl-reason-title">AI 시대의 핵심 기초 스킬</div>
+        <div class="wl-reason-text">
+          AI 생성 이미지의 <strong>3D 원리를 이해하고 퀄리티를 판단·수정</strong>할 수 있는
+          능력은 C4D 기초 없이는 불가능합니다. 근본이 있어야 AI도 씁니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STUDIOS ═══════ -->
+<section class="s studios-s" id="studios">
+  <div class="s-inner">
+    <div class="s-tag rv">국내외 참고 스튜디오</div>
+    <h2 class="s-h rv">여러분이 <em>일하게 될</em><br>스튜디오들</h2>
+    <p class="s-p rv" style="margin-bottom:64px;">
+      이 스튜디오들이 Cinema 4D를 핵심 도구로 사용합니다.<br>
+      레퍼런스를 보며 목표를 구체적으로 설정하세요.
+    </p>
+
+    <div class="studios-category rv">
+      <div class="studios-cat-label">해외 스튜디오</div>
+      <div class="studios-grid">
+        <a href="https://www.ordinaryfolk.co/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">Ordinary Folk</div>
+            <div class="studio-btn-desc">캐나다 · 모션 디자인 & 애니메이션</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="http://www.themill.com/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">The Mill</div>
+            <div class="studio-btn-desc">글로벌 · VFX & 크리에이티브 프로덕션</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="http://elastic.tv/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">Elastic</div>
+            <div class="studio-btn-desc">LA · 타이틀 시퀀스 & 모션 디자인</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="http://buck.tv/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">Buck</div>
+            <div class="studio-btn-desc">NY/LA · 디자인 & 애니메이션 스튜디오</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="studios-category rv d1">
+      <div class="studios-cat-label">국내 스튜디오</div>
+      <div class="studios-grid">
+        <a href="https://undznd.com/about" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">UNDZND</div>
+            <div class="studio-btn-desc">서울 · 모션그래픽 & 크리에이티브 디자인</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="https://www.giantstep.co.kr/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">Giant Step</div>
+            <div class="studio-btn-desc">서울 · VFX & 디지털 콘텐츠 스튜디오</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="https://www.2grey.com/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">2Grey</div>
+            <div class="studio-btn-desc">서울 · 모션 디자인 & 브랜드 영상</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
+        <a href="https://superverymore.tv/" target="_blank" rel="noopener" class="studio-btn ripple-dark ripple-el shimmer-btn">
+          <div class="studio-btn-left">
+            <div class="studio-btn-name">Superverymore</div>
+            <div class="studio-btn-desc">서울 · 영상 디자인 & 모션 크리에이티브</div>
+          </div>
+          <div class="studio-btn-arrow">↗</div>
+        </a>
       </div>
     </div>
   </div>
@@ -1843,17 +2196,56 @@ function switchW(n){
   document.querySelectorAll('.week-pane').forEach((p,i)=>p.classList.toggle('on',i+1===n));
 }
 
-/* ── RIPPLE ── */
-document.querySelectorAll('.ripple-el').forEach(el=>{
-  el.addEventListener('click',e=>{
-    const rect=el.getBoundingClientRect();
-    const x=e.clientX-rect.left;const y=e.clientY-rect.top;
-    const size=Math.max(rect.width,rect.height)*2;
-    const wave=document.createElement('span');
-    wave.className='ripple-wave';
-    wave.style.cssText=`width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;`;
-    el.appendChild(wave);
-    setTimeout(()=>wave.remove(),700);
+/* ── RIPPLE (향상) ── */
+function addRipple(el, e){
+  const rect=el.getBoundingClientRect();
+  const x=e.clientX-rect.left;
+  const y=e.clientY-rect.top;
+  const size=Math.max(rect.width,rect.height)*2.5;
+  const wave=document.createElement('span');
+  wave.className='ripple-wave';
+  // 밝은 배경엔 어두운 리플
+  if(el.classList.contains('ripple-dark')){
+    wave.style.background='rgba(0,0,0,0.09)';
+  }
+  wave.style.cssText+=`width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;`;
+  el.appendChild(wave);
+  wave.addEventListener('animationend',()=>wave.remove());
+}
+document.addEventListener('click',e=>{
+  const el=e.target.closest('.ripple-el');
+  if(el) addRipple(el,e);
+});
+
+/* ── CARD TILT ── */
+document.querySelectorAll('.wl-reason,.wl-stat,.chap-card,.ai-card,.spec-card,.inst-stat-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const cx=r.left+r.width/2;
+    const cy=r.top+r.height/2;
+    const dx=(e.clientX-cx)/r.width*16;
+    const dy=(e.clientY-cy)/r.height*16;
+    card.style.transform=`translateY(-8px) rotateX(${-dy}deg) rotateY(${dx}deg)`;
+    card.style.transition='transform .1s';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.transition='transform .4s cubic-bezier(.16,1,.3,1)';
+  });
+});
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-cta,.studio-btn').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const dx=(e.clientX-(r.left+r.width/2))*.2;
+    const dy=(e.clientY-(r.top+r.height/2))*.2;
+    btn.style.transform=`translate(${dx}px,${dy}px)`;
+    btn.style.transition='transform .1s';
+  });
+  btn.addEventListener('mouseleave',()=>{
+    btn.style.transform='';
+    btn.style.transition='transform .4s cubic-bezier(.16,1,.3,1)';
   });
 });
 
