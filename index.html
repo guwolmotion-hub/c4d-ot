@@ -865,6 +865,91 @@ nav.stuck .nav-links a{color:#fff;}
 .qa-item.open .qa-body{max-height:300px;}
 
 /* ─────────────────────────────────────
+   PREP (준비물)
+───────────────────────────────────── */
+.prep-s{background:transparent;color:#fff;}
+.prep-s .s-h{color:#fff;}
+.prep-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+  margin-bottom:40px;
+}
+.prep-card{
+  display:flex;flex-direction:column;gap:14px;
+  padding:28px 24px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+  text-decoration:none;color:#fff;
+  position:relative;overflow:hidden;
+  cursor:default;
+}
+.prep-card::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s;
+}
+.prep-card:hover{
+  background:rgba(232,93,0,.07);
+  border-color:rgba(232,93,0,.25);
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+.prep-card:hover::after{transform:scaleX(1);}
+.prep-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);
+  font-size:.9rem;letter-spacing:.02em;
+  font-weight:700;flex-shrink:0;
+}
+.prep-name{
+  font-size:.98rem;font-weight:800;color:#fff;
+  line-height:1.3;
+}
+.prep-ver{
+  font-size:.72rem;font-weight:600;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.08em;
+}
+.prep-desc{
+  font-size:.78rem;font-weight:500;
+  color:rgba(255,255,255,.45);
+  line-height:1.6;
+  flex:1;
+}
+.prep-tag{
+  display:inline-flex;align-items:center;
+  padding:4px 12px;border-radius:99px;
+  border:1px solid rgba(255,255,255,.1);
+  font-size:.65rem;font-weight:700;
+  color:rgba(255,255,255,.4);
+  align-self:flex-start;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.prep-tag.req{
+  border-color:rgba(232,93,0,.4);
+  color:var(--orange);
+}
+.prep-note{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-left:3px solid var(--orange);
+  border-radius:10px;
+  padding:20px 24px;
+  font-size:.85rem;font-weight:500;
+  color:rgba(255,255,255,.5);
+  line-height:1.7;
+}
+.prep-note strong{color:rgba(255,255,255,.85);}
+@media(max-width:640px){.prep-grid{grid-template-columns:1fr 1fr;}}
+
+/* ─────────────────────────────────────
    CURRICULUM
 ───────────────────────────────────── */
 .curr-s{background:transparent;color:#fff;}
@@ -1425,6 +1510,7 @@ footer{
     <li><a href="#ai">AI 시대?</a></li>
     <li><a href="#why-learn">왜 C4D를 배워야하나</a></li>
     <li><a href="#studios">스튜디오</a></li>
+    <li><a href="#prep">준비물</a></li>
     <li><a href="#curriculum">커리큘럼</a></li>
     <li><a href="#results">작업물</a></li>
   </ul>
@@ -1984,6 +2070,86 @@ footer{
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PREP ═══════ -->
+<section class="s prep-s" id="prep">
+  <div class="s-inner">
+    <div class="s-tag rv">수업 전 준비사항</div>
+    <h2 class="s-h rv">수업 <em>준비물</em></h2>
+    <p class="s-p rv" style="color:rgba(255,255,255,.45);margin-bottom:48px;">
+      첫 수업 전까지 아래 소프트웨어를 설치해주세요.<br>설치 방법은 수업 중 함께 안내합니다.
+    </p>
+
+    <div class="prep-grid">
+
+      <div class="prep-card rv ripple-el">
+        <div class="prep-icon" style="background:#001233;color:#7b9fff;">C4D</div>
+        <div>
+          <div class="prep-name">Cinema 4D</div>
+          <div class="prep-ver">R23 / S24 이상</div>
+        </div>
+        <div class="prep-desc">수업의 핵심 툴. Maxon 공식 사이트에서 Trial 또는 학생 라이선스 신청 가능.</div>
+        <span class="prep-tag req">필수</span>
+      </div>
+
+      <div class="prep-card rv d1 ripple-el">
+        <div class="prep-icon" style="background:#0c0044;color:#9999ff;">AE</div>
+        <div>
+          <div class="prep-name">Adobe After Effects</div>
+          <div class="prep-ver">CC 최신버전</div>
+        </div>
+        <div class="prep-desc">모션그래픽 합성 및 2D 애니메이션 편집. Creative Cloud 구독 또는 학생 플랜.</div>
+        <span class="prep-tag req">필수</span>
+      </div>
+
+      <div class="prep-card rv d2 ripple-el">
+        <div class="prep-icon" style="background:#0d1b0d;color:#7dff7d;">OCT</div>
+        <div>
+          <div class="prep-name">Octane Render</div>
+          <div class="prep-ver">OTOY — C4D 플러그인</div>
+        </div>
+        <div class="prep-desc">GPU 기반 언바이어스드 렌더러. C4D 플러그인 형태로 설치. Free Tier 사용 가능.</div>
+        <span class="prep-tag req">필수</span>
+      </div>
+
+      <div class="prep-card rv ripple-el">
+        <div class="prep-icon" style="background:#001e36;color:#31a8ff;">Ps</div>
+        <div>
+          <div class="prep-name">Adobe Photoshop</div>
+          <div class="prep-ver">CC 최신버전</div>
+        </div>
+        <div class="prep-desc">텍스처 제작 및 이미지 보정. After Effects와 함께 사용.</div>
+        <span class="prep-tag">권장</span>
+      </div>
+
+      <div class="prep-card rv d1 ripple-el">
+        <div class="prep-icon" style="background:#2d0a00;color:#ff7c00;">Ai</div>
+        <div>
+          <div class="prep-name">Adobe Illustrator</div>
+          <div class="prep-ver">CC 최신버전</div>
+        </div>
+        <div class="prep-desc">벡터 그래픽 소스 제작. 로고·타이포 등 C4D 반입 소스에 활용.</div>
+        <span class="prep-tag">권장</span>
+      </div>
+
+      <div class="prep-card rv d2 ripple-el">
+        <div class="prep-icon" style="background:#1a1a1a;color:#aaa;">💻</div>
+        <div>
+          <div class="prep-name">개인 노트북</div>
+          <div class="prep-ver">GPU 탑재 권장</div>
+        </div>
+        <div class="prep-desc">GPU 있는 노트북 또는 데스크탑 권장. 사양 관련 문의는 강사에게.</div>
+        <span class="prep-tag">권장</span>
+      </div>
+
+    </div>
+
+    <div class="prep-note rv">
+      <strong>📌 설치 안내</strong> — 라이선스 구매나 설치 방법이 어려우신 분들은 걱정하지 마세요.<br>
+      첫 수업 시간에 강사가 직접 설치 방법을 안내드립니다. <strong>Trial 버전으로도 수업 진행 가능합니다.</strong>
     </div>
   </div>
 </section>
