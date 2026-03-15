@@ -785,45 +785,83 @@ nav.stuck{
 .res-s{background:var(--ink);color:#fff;}
 .res-s .s-h{color:#fff;}
 .res-s .s-p{color:rgba(255,255,255,.45);}
-.res-grid{
+.res-link-wrap{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:auto auto;
-  gap:16px;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:8px;
 }
-.res-card{
+.res-link-card{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:36px 40px;
   border-radius:var(--r-lg);
-  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+  text-decoration:none;
+  color:#fff;
   position:relative;
-  aspect-ratio:16/9;
-  border:1px solid rgba(255,255,255,.07);
-  transition:all .35s;
-  cursor:default;
+  overflow:hidden;
 }
-.res-card:nth-child(1){grid-column:span 2;}
-.res-card:nth-child(5){grid-column:span 2;}
-.res-card:hover{transform:scale(1.02);z-index:2;}
-.res-card-bg{
+.res-link-card::before{
+  content:'';
   position:absolute;inset:0;
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
+  opacity:0;
+  transition:opacity .35s;
 }
-.res-card:hover .res-card-bg{transform:scale(1.07);}
-.r1 .res-card-bg{background:linear-gradient(135deg,#1a0533,#4c1d95,#7c3aed);}
-.r2 .res-card-bg{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);}
-.r3 .res-card-bg{background:linear-gradient(135deg,#200122,#6f0000,#c0392b);}
-.r4 .res-card-bg{background:linear-gradient(135deg,#243b55,#141e30,#0a3d62);}
-.r5 .res-card-bg{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);}
-.r6 .res-card-bg{background:linear-gradient(135deg,#1f1c2c,#928dab);}
-.res-card-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);
+.res-link-card.yt::before{background:linear-gradient(135deg,rgba(255,0,0,.15),rgba(180,0,0,.08));}
+.res-link-card.cafe::before{background:linear-gradient(135deg,rgba(3,199,90,.15),rgba(3,180,70,.08));}
+.res-link-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.2);
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
 }
-.res-card-label{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:20px 24px;
+.res-link-card:hover::before{opacity:1;}
+.res-link-icon{
+  width:64px;height:64px;flex-shrink:0;
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;
+  position:relative;z-index:1;
 }
-.res-label-title{font-size:.92rem;font-weight:800;color:#fff;}
-.res-label-sub{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:3px;}
+.res-link-card.yt .res-link-icon{background:rgba(255,0,0,.15);}
+.res-link-card.cafe .res-link-icon{background:rgba(3,199,90,.15);}
+.res-link-body{position:relative;z-index:1;flex:1;}
+.res-link-platform{
+  font-size:.68rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.res-link-card.yt .res-link-platform{color:#ff4e4e;}
+.res-link-card.cafe .res-link-platform{color:#03c75a;}
+.res-link-title{
+  font-family:var(--font-display);
+  font-size:1.6rem;letter-spacing:.04em;
+  color:#fff;margin-bottom:6px;line-height:1;
+}
+.res-link-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;}
+.res-link-arrow{
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:rgba(255,255,255,.4);
+  transition:all .3s;
+  position:relative;z-index:1;
+}
+.res-link-card:hover .res-link-arrow{
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  transform:translateX(4px);
+}
+@media(max-width:640px){
+  .res-link-wrap{grid-template-columns:1fr;}
+  .res-link-card{padding:24px;}
+  .res-link-icon{width:52px;height:52px;font-size:1.6rem;}
+  .res-link-title{font-size:1.3rem;}
+}
 
 /* ─────────────────────────────────────
    CTA
@@ -979,7 +1017,7 @@ footer{
     <li><a href="#ai">AI & 근본</a></li>
     <li><a href="#curriculum">커리큘럼</a></li>
     <li><a href="#chapters">학습 내용</a></li>
-    <li><a href="#results">결과물</a></li>
+    <li><a href="#results">작업물 보기</a></li>
   </ul>
   <div class="nav-pill"><span></span>1일차 OT</div>
 </nav>
@@ -1500,57 +1538,30 @@ footer{
   <div class="s-inner">
     <div class="s-tag rv" style="color:rgba(255,255,255,.35);">수강생 결과물</div>
     <h2 class="s-h rv" style="color:#fff;">실제 <em>수강생 작업물</em></h2>
-    <p class="s-p rv" style="color:rgba(255,255,255,.4);margin-bottom:48px;">실제 수강생들이 완성한 Cinema 4D 작업물입니다. 이 수준이 여러분의 목표가 됩니다.</p>
+    <p class="s-p rv" style="color:rgba(255,255,255,.4);margin-bottom:48px;">
+      실제 수강생들이 완성한 작업물을 확인해보세요.<br>
+      유튜브 채널과 네이버 카페에서 더 많은 결과물을 볼 수 있습니다.
+    </p>
 
-    <div class="res-grid rv">
-      <div class="res-card r1">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">베어브릭 캐릭터</div>
-          <div class="res-label-sub">3D 모델링 & 렌더링</div>
+    <div class="res-link-wrap rv">
+      <a href="https://www.youtube.com/@sbs4207" target="_blank" rel="noopener" class="res-link-card yt ripple-el">
+        <div class="res-link-icon">▶</div>
+        <div class="res-link-body">
+          <div class="res-link-platform">YouTube</div>
+          <div class="res-link-title">SBS아카데미<br>구월지점</div>
+          <div class="res-link-desc">수강생 포트폴리오·작업물<br>영상으로 확인하기</div>
         </div>
-      </div>
-      <div class="res-card r2">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">사무실 환경</div>
-          <div class="res-label-sub">환경 모델링 & 라이팅</div>
+        <div class="res-link-arrow">→</div>
+      </a>
+      <a href="https://cafe.naver.com/sbsgw" target="_blank" rel="noopener" class="res-link-card cafe ripple-el">
+        <div class="res-link-icon">☕</div>
+        <div class="res-link-body">
+          <div class="res-link-platform">Naver Cafe</div>
+          <div class="res-link-title">SBS아카데미<br>구월 카페</div>
+          <div class="res-link-desc">수강생 작업물·커뮤니티<br>카페에서 더 보기</div>
         </div>
-      </div>
-      <div class="res-card r3">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">아트워크</div>
-          <div class="res-label-sub">포커 테이블 3D 씬</div>
-        </div>
-      </div>
-      <div class="res-card r4">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">브랜딩 렌더링</div>
-          <div class="res-label-sub">제품 렌더링 3D 포스터</div>
-        </div>
-      </div>
-      <div class="res-card r5">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">골목길 씬</div>
-          <div class="res-label-sub">옥테인 렌더링</div>
-        </div>
-      </div>
-      <div class="res-card r6">
-        <div class="res-card-bg"></div>
-        <div class="res-card-overlay"></div>
-        <div class="res-card-label">
-          <div class="res-label-title">코어 아트웍</div>
-          <div class="res-label-sub">파티클 & 이미시브 라이팅</div>
-        </div>
-      </div>
+        <div class="res-link-arrow">→</div>
+      </a>
     </div>
   </div>
 </section>
