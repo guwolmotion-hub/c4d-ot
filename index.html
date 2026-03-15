@@ -504,6 +504,34 @@ nav.stuck{
   color:rgba(255,255,255,.4);
   text-align:center;line-height:1.3;
 }
+.inst-contact-wrap{
+  margin-top:24px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-lg);
+  padding:24px;
+}
+.inst-contact-label{
+  font-size:.65rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  margin-bottom:16px;
+}
+.inst-contact-inner{
+  display:flex;align-items:center;gap:20px;
+}
+.inst-qr-img{
+  width:90px;height:90px;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid rgba(255,255,255,.15);
+  flex-shrink:0;
+}
+.inst-contact-desc{
+  font-size:.8rem;font-weight:400;
+  color:rgba(255,255,255,.55);
+  line-height:1.7;
+}
 @media(max-width:640px){
   .inst-tools-grid{grid-template-columns:repeat(4,1fr);}
 }
@@ -1299,7 +1327,7 @@ footer{
         <div class="inst-name-en">JUNG<br>SEIL</div>
         <div class="inst-name-kr">정세일 학과장</div>
         <div class="inst-role-badge">
-          <span>SBS아카데미 구월지점 · 영상/<em>CG학과</em> · <em>5년차</em> 전임강사</span>
+          <span>SBS아카데미 구월지점 · 영상/<em>CG학과</em> · <em>5년차</em> 학과장</span>
         </div>
         <p class="inst-bio">
           <strong>3D 및 2D 영상 디자인 스튜디오</strong>와 <strong>포스트프로덕션</strong>에서
@@ -1326,7 +1354,7 @@ footer{
             <div class="inst-career-dot"></div>
             <div class="inst-career-text">
               <strong>SBS아카데미 구월지점 영상/CG학과장</strong>
-              Cinema 4D · After Effects · 모션그래픽 전임 강사 5년차
+              Cinema 4D · After Effects · 모션그래픽 학과장 5년차
             </div>
           </div>
         </div>
@@ -1394,6 +1422,16 @@ footer{
             <div class="inst-tool-item">
               <div class="inst-tool-icon" style="background:#1a1a2e;color:#a78bfa;">AI</div>
               <div class="inst-tool-name">각종 AI 툴</div>
+            </div>
+          </div>
+        </div>
+        <div class="inst-contact-wrap rv d5">
+          <div class="inst-contact-label">📬 수업 관련 문의 · 연락</div>
+          <div class="inst-contact-inner">
+            <img src="qr.jpg" alt="강사 연락처 QR" class="inst-qr-img">
+            <div class="inst-contact-desc">
+              수업 내용, 진도, 포트폴리오 등<br>
+              궁금한 점은 QR을 스캔해 연락 주세요.
             </div>
           </div>
         </div>
@@ -2052,9 +2090,8 @@ footer{
   <div class="s-inner">
     <div class="s-tag rv">다양한 무료 특강</div>
     <h2 class="s-h rv">수업 외 <em>특별 혜택</em></h2>
-    <p class="s-p rv" style="margin-bottom:56px;">언리얼엔진, 서브스턴스페인터, 디자인 세미나 견학 등 다양한 경험을 제공합니다.</p>
+    <p class="s-p rv" style="margin-bottom:56px;">서브스탠스 페인터, 시뮬레이션 특강, 디자인 세미나 견학 등 다양한 경험을 제공합니다.</p>
     <div class="spec-grid">
-      <div class="spec-card rv ripple-el"><span class="spec-icon">🎮</span><div class="spec-title">언리얼엔진 특강</div><div class="spec-desc">실시간 3D 렌더링과 게임엔진 활용</div></div>
       <div class="spec-card rv d1 ripple-el"><span class="spec-icon">💧</span><div class="spec-title">리얼 플로우 특강</div><div class="spec-desc">유체 시뮬레이션 심화</div></div>
       <div class="spec-card rv d2 ripple-el"><span class="spec-icon">🌪️</span><div class="spec-title">터불런스FD 특강</div><div class="spec-desc">연기·불꽃 파티클 시뮬레이션</div></div>
       <div class="spec-card rv ripple-el"><span class="spec-icon">🎨</span><div class="spec-title">3D 아트웍 제작</div><div class="spec-desc">고퀄리티 3D 아트웍 완성 과정</div></div>
