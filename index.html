@@ -40,11 +40,22 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;font-size:16px;}
 body{
-  background:var(--bg);
-  color:var(--ink);
+  background:#0a0a0a;
+  color:#fff;
   font-family:var(--font-body);
   overflow-x:hidden;
   cursor:none;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:80px 80px;
+  pointer-events:none;
+  z-index:0;
 }
 ::selection{background:var(--orange);color:#fff;}
 img{display:block;max-width:100%;}
@@ -125,13 +136,13 @@ nav{
   transition:all .35s;
 }
 nav.stuck{
-  background:rgba(240,239,237,0.96);
+  background:rgba(10,10,10,0.92);
   backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(255,255,255,.07);
   padding:14px 48px;
 }
-nav.stuck .nav-logo{color:var(--ink);}
-nav.stuck .nav-links a{color:var(--ink);}
+nav.stuck .nav-logo{color:#fff;}
+nav.stuck .nav-links a{color:#fff;}
 .nav-logo{
   font-family:var(--font-display);
   font-size:1.5rem;
@@ -171,7 +182,7 @@ nav.stuck .nav-links a{color:var(--ink);}
   min-height:100vh;
   display:grid;
   grid-template-rows:1fr auto;
-  background:var(--ink);
+  background:transparent;
   color:#fff;
   position:relative;
   overflow:hidden;
@@ -337,7 +348,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    INSTRUCTOR SECTION
 ───────────────────────────────────── */
-.instructor-s{background:var(--ink);color:#fff;}
+.instructor-s{background:transparent;color:#fff;}
 .instructor-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -544,7 +555,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    AI SECTION
 ───────────────────────────────────── */
-.ai-s{background:var(--ink2);}
+.ai-s{background:transparent;}
 .ai-banner{
   background:var(--ink);
   color:#fff;
@@ -628,7 +639,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    WHY LEARN C4D (상세 이유)
 ───────────────────────────────────── */
-.why-learn-s{background:var(--ink);color:#fff;}
+.why-learn-s{background:transparent;color:#fff;}
 .why-learn-s .s-h{color:#fff;}
 .studios-s .s-h{color:#fff;}
 .why-s .s-h{color:#fff;}
@@ -720,7 +731,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    STUDIOS
 ───────────────────────────────────── */
-.studios-s{background:var(--ink3);color:#fff;}
+.studios-s{background:transparent;color:#fff;}
 .studios-category{margin-bottom:56px;}
 .studios-cat-label{
   display:flex;align-items:center;gap:12px;
@@ -793,7 +804,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    WHY C4D (PROBLEM Q&A)
 ───────────────────────────────────── */
-.why-s{background:var(--ink2);color:#fff;}
+.why-s{background:transparent;color:#fff;}
 .why-header{
   display:flex;align-items:flex-end;justify-content:space-between;
   margin-bottom:64px;gap:40px;
@@ -856,7 +867,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    CURRICULUM
 ───────────────────────────────────── */
-.curr-s{background:var(--ink);color:#fff;}
+.curr-s{background:transparent;color:#fff;}
 .curr-s .s-h{color:#fff;}
 .curr-s .s-p{color:rgba(255,255,255,.45);}
 .week-nav{
@@ -924,7 +935,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    ROADMAP
 ───────────────────────────────────── */
-.road-s{background:var(--ink3);color:#fff;}
+.road-s{background:transparent;color:#fff;}
 .road-timeline{
   position:relative;margin-top:60px;
   display:grid;grid-template-columns:repeat(6,1fr);
@@ -980,7 +991,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    CHAPTERS
 ───────────────────────────────────── */
-.chap-s{background:var(--ink2);color:#fff;}
+.chap-s{background:transparent;color:#fff;}
 .chap-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
   gap:20px;
@@ -1028,7 +1039,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    SPECIALS
 ───────────────────────────────────── */
-.spec-s{background:var(--ink3);color:#fff;}
+.spec-s{background:transparent;color:#fff;}
 .spec-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
   gap:16px;
@@ -1052,7 +1063,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    RESULTS
 ───────────────────────────────────── */
-.res-s{background:var(--ink);color:#fff;}
+.res-s{background:transparent;color:#fff;}
 .res-s .s-h{color:#fff;}
 .res-s .s-p{color:rgba(255,255,255,.45);}
 .res-link-wrap{
@@ -1136,7 +1147,7 @@ nav.stuck .nav-links a{color:var(--ink);}
 /* ─────────────────────────────────────
    CTA
 ───────────────────────────────────── */
-.cta-s{background:var(--ink);}
+.cta-s{background:transparent;}
 .cta-inner{
   display:grid;grid-template-columns:1fr 1fr;
   gap:80px;align-items:center;
@@ -1205,7 +1216,7 @@ nav.stuck .nav-links a{color:var(--ink);}
    FOOTER
 ───────────────────────────────────── */
 footer{
-  background:var(--ink);
+  background:transparent;
   padding:48px;
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;flex-wrap:wrap;
@@ -1289,7 +1300,7 @@ footer{
 /* ─────────────────────────────────────
    JOBS SECTION
 ───────────────────────────────────── */
-.jobs-s{background:var(--ink2);color:#fff;}
+.jobs-s{background:transparent;color:#fff;}
 .jobs-s .s-h{color:#fff;}
 .jobs-s .s-p{color:rgba(255,255,255,.45);}
 .jobs-notice{
@@ -1468,7 +1479,7 @@ footer{
     <div class="instructor-layout">
       <div class="inst-left rv">
         <div class="inst-tag">강사 소개</div>
-        <div class="inst-name-en">JUNG<br>SEIL</div>
+        <div class="inst-name-en">JEONG<br>SEIL</div>
         <div class="inst-name-kr">정세일 학과장</div>
         <div class="inst-role-badge">
           <span>SBS아카데미 구월지점 · 영상/<em>CG학과</em> · <em>5년차</em> 학과장</span>
